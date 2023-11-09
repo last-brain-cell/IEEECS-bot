@@ -35,6 +35,12 @@ class CustomBot(commands.Bot):
         # This would also be a good place to connect to our database and
         # load anything that should be in memory prior to handling events.
 
+    async def on_member_join(self, member: discord.Member):
+        guild = member.guild
+        if guild.system_channel is not None:
+            to_send = f'Welcome {member.mention} to {guild.name}!'
+            await guild.system_channel.send(to_send)
+
 
 async def main():
     logger = logging.getLogger('discord')

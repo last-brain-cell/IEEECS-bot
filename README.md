@@ -14,6 +14,9 @@
 - Daily automated posts from popular tech subreddits.
 - Supports different post types: top, best, new, hot, rising, controversial, random.
 
+## Tech News
+- Daily automated tech news from top news channels.
+
 ### User Interaction
 - Responds to user commands.
 - Provides onboarding assistance for new members.

@@ -5,14 +5,26 @@ import os
 from typing import List, Optional
 import discord
 from discord.ext import commands
+from pymongo import MongoClient
+from pydantic import BaseModel
+from datetime import datetime
+
+client = MongoClient("mongodb://localhost:27017/")
+db = client["IEEECS-bot"]
+
+
+class Chat(BaseModel):
+    user: str
+    chat: str
+    timestamp: datetime
 
 
 class CustomBot(commands.Bot):
     def __init__(
-        self,
-        *args,
-        testing_guild_id: Optional[int],
-        **kwargs,
+            self,
+            *args,
+            testing_guild_id: Optional[int],
+            **kwargs,
     ):
         super().__init__(*args, **kwargs)
         self.testing_guild_id = testing_guild_id
@@ -41,6 +53,16 @@ class CustomBot(commands.Bot):
             to_send = f'Welcome {member.mention} to {guild.name}!'
             await guild.system_channel.send(to_send)
 
+    async def on_message(self, message: discord.Message):
+        if message.author != self.user:
+            if message.content:
+                chat = Chat(user=message.author.name, chat=message.content, timestamp=message.created_at)
+                collection = db[f"{message.guild.name}"]
+                try:
+                    collection.insert_one(chat.model_dump())
+                except Exception as e:
+                    print(e)
+
 
 async def main():
     logger = logging.getLogger('discord')
@@ -57,11 +79,10 @@ async def main():
     handler.setFormatter(formatter)
     logger.addHandler(handler)
 
-    # exts = ['general', 'mod', 'dice']
-
     intents = discord.Intents.default()
     intents.message_content = True
-    await CustomBot(command_prefix="!", intents=intents, testing_guild_id=1112083866618966076).start(os.getenv("DISCORD_TOKEN"))
+    await CustomBot(command_prefix="!", intents=intents, testing_guild_id=1112083866618966076).start(
+        os.getenv("DISCORD_TOKEN"))
 
 
 asyncio.run(main())

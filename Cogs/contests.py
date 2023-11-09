@@ -31,7 +31,9 @@ class Contests(commands.Cog, name="contests"):
         async with aiohttp.ClientSession() as session:
             try:
                 async with session.get(
-                    "https://clist.by:443/api/v3/contest/?upcoming=true&start_time__during=1%20day&order_by=start",
+                     f"https://clist.by:443/api/v3/contest/?upcoming=true&format_time=false&start_time__during="
+                    f"1%20day&resource=codingcompetitions.withgoogle.com%2Cleetcode.com%2Ccodechef.com%2"
+                    f"Ccodeforces.com&order_by=start",
                     headers=headers,
                 ) as response:
                     data = await response.json()

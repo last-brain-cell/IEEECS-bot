@@ -2,6 +2,8 @@
 
 ## This is a discord bot for IEEE Computer Society MUJ Community Server.
 
+- This bot is currently used for automating various tasks for this server, and it also includes various other cool features mentioned below.
+
 ## Current Features - 
 
 ### Competitive Programming Support
@@ -17,11 +19,11 @@
 - Provides onboarding assistance for new members.
 
 ### GPT Integration
-- Cog commands for interacting with GPT models.
+- Commands for interacting with GPT models.
 - Rate limiting to prevent token exhaustion.
 
 ### Event Management
-- Create and manage events within your Discord server.
+- Create and manage events within the server.
 
 ### Chat Gathering
 - Collects chat data for model training.
@@ -29,8 +31,6 @@
 ### Member Statistics
 - Provides weekly member statistics.
 - Offers insights into member engagement and activity.
-
-
 
 ## Environment variables - 
 - Don't forget to add the following variables in your environment

@@ -56,7 +56,6 @@ async def main():
     intents = discord.Intents.default()
     intents.message_content = True
     await CustomBot(command_prefix="!", intents=intents, testing_guild_id=1112083866618966076).start(os.getenv("DISCORD_TOKEN"))
-    # await CustomBot(commands.when_mentioned, command_prefix="!", intents=intents, testing_guild_id=1112083866618966076).start(os.getenv("DISCORD_TOKEN"))
 
 
 asyncio.run(main())

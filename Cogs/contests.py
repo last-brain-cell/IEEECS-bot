@@ -22,12 +22,12 @@ class Contests(commands.Cog, name="contests"):
     async def update_contests(self):
         now: datetime.datetime = datetime.datetime.now(ZoneInfo("Asia/Kolkata"))
         tomorrow = datetime.datetime(
-            now.year, now.month, now.day, 0, 0, 0, 0, ZoneInfo("Asia/Kolkata")
+            now.year, now.month, now.day, 22, 0, 0, 0, ZoneInfo("Asia/Kolkata")
         ) + datetime.timedelta(days=1)
         await asyncio.sleep((tomorrow - now).seconds)
         headers = {"Authorization": os.getenv("CLIST_API_KEY")}
-        guild: discord.Guild = self.bot.get_guild(1112083866618966076)
-        channel: discord.TextChannel = guild.get_channel(1171740893225689120)
+        guild: discord.Guild = self.bot.get_guild(1171565156619268208)
+        channel: discord.TextChannel = guild.get_channel(1172912822821322883)
         async with aiohttp.ClientSession() as session:
             try:
                 async with session.get(

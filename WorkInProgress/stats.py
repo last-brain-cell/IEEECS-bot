@@ -31,6 +31,13 @@ stop_words = [
     "won't", "wouldn't", "you'd", "you'll", "you're", "you've", "!search", "!do_something", "!chatgpt"
 ]
 
+
+def dict_to_embed(data: dict, title: str, channel):
+    embed = discord.Embed(title=title)
+    for key, value in enumerate(data):
+        embed.add_field(name=key, value=value)
+
+
 class Stats(commands.Cog, name="stats"):
     def __init__(self, bot: commands.Bot) -> None:
         self.bot = bot
@@ -129,22 +136,18 @@ class Stats(commands.Cog, name="stats"):
                     user_total_words += len(words)
                     user_total_chars += len(message)
 
-                    # Calculate time distribution
                     timestamp = document["timestamp"]
                     hour = timestamp.hour
                     user_time_distribution[hour] += 1
 
-                    # Count word frequency (excluding stop words)
                     for word in words:
                         if word.lower() not in stop_words:
                             user_word_freq[word] += 1
 
-                # Generate a pie chart for time distribution
                 plt.pie(user_time_distribution.values(), labels=user_time_distribution.keys(), autopct='%1.1f%%')
                 plt.title("Time Distribution of Messages by User")
                 plt.show()
 
-                # Get the most frequently said word (excluding stop words)
                 user_most_frequent_words = [word for word in user_word_freq if user_word_freq[word] > 1]
                 user_most_frequent_words.sort(key=lambda word: user_word_freq[word], reverse=True)
 

@@ -13,14 +13,15 @@ listings = ["top", "best", "new", "hot", "rising", "controversial", "random"]
 posts = list()
 
 channels = {
-    "python": 1172149798321799168,
-    "Technology": 1172150087279980666,
-    "Coding": 1172150120846999592,
-    "Webdev": 1172150157807202326,
-    "Cybersecurity": 1172150191009304617,
-    "msp": 1172150223913615541,
-    "Artificial": 1172150274081685544
+    "python": 1172350687099760642,
+    "Technology": 1172350863734472754,
+    "Coding": 1172351369550778458,
+    "Webdev": 1172351325728669706,
+    "Cybersecurity": 1172351785487310908,
+    "msp": 1172351535632629820,
+    "Artificial": 1172350779785482291
 }
+
 
 class Listing(BaseModel):
     subreddit: str = ""
@@ -79,10 +80,10 @@ class Reddit(commands.Cog, name="reddit"):
     async def send_reddits(self):
         now: datetime.datetime = datetime.datetime.now(ZoneInfo("Asia/Kolkata"))
         tomorrow = datetime.datetime(
-            now.year, now.month, now.day, 18, 28, 0, 0, ZoneInfo("Asia/Kolkata")
+            now.year, now.month, now.day, 22, 0, 0, 0, ZoneInfo("Asia/Kolkata")
         ) + datetime.timedelta(days=1)
         await asyncio.sleep((tomorrow - now).seconds)
-        guild: discord.Guild = self.bot.get_guild(1112083866618966076)  # test Guild for now
+        guild: discord.Guild = self.bot.get_guild(1171565156619268208)  # test Guild for now
 
         try:
             for subreddit in subreddits:
@@ -99,7 +100,7 @@ class Reddit(commands.Cog, name="reddit"):
 
             for post in posts:
                 embed = discord.Embed(color=0xffd500)
-                embed.set_image(url="https://www.freeiconspng.com/thumbs/reddit-icon/red-reddit-icon-7.png",)
+                embed.set_image(url="https://www.freeiconspng.com/thumbs/reddit-icon/red-reddit-icon-7.png", )
                 embed.add_field(
                     name=f"r/{post['subreddit']}", value=post["listing_type"]
                 )
@@ -116,7 +117,8 @@ class Reddit(commands.Cog, name="reddit"):
                     name="Click this to open post",
                     url=post["url"]
                 )
-                channel: discord.TextChannel = guild.get_channel(channels.get(post["subreddit"]))  # test channel for now
+                channel: discord.TextChannel = guild.get_channel(
+                    channels.get(post["subreddit"]))  # test channel for now
                 await channel.send(f"<&1112083866618966076>\nCheck this out...", embeds=[embed])
         except Exception as e:
             print(e)

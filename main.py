@@ -48,10 +48,11 @@ class CustomBot(commands.Bot):
         # load anything that should be in memory prior to handling events.
 
     async def on_member_join(self, member: discord.Member):
-        guild = member.guild
-        if guild.system_channel is not None:
-            to_send = f'Welcome {member.mention} to {guild.name}!'
-            await guild.system_channel.send(to_send)
+        channel: discord.TextChannel = self.get_channel(1172930460091940884)
+        await channel.send(
+            f"Hi {member.mention} Welcome to IEEE Computer Society MUJ Community server! Head over to <id:customize>"
+            f" to get roles and get started."
+        )
 
     async def on_message(self, message: discord.Message):
         if message.author != self.user:

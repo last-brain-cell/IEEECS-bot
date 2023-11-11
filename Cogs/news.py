@@ -32,13 +32,13 @@ class News(commands.Cog, name="news"):
     async def send_news(self):
         now: datetime.datetime = datetime.datetime.now(ZoneInfo("Asia/Kolkata"))
         tomorrow = datetime.datetime(
-            now.year, now.month, now.day, 0, 0, 0, 0, ZoneInfo("Asia/Kolkata")
+            now.year, now.month, now.day, 22, 0, 0, 0, ZoneInfo("Asia/Kolkata")
         ) + datetime.timedelta(days=1)
         await asyncio.sleep((tomorrow - now).seconds)
-        guild: discord.Guild = self.bot.get_guild(1112083866618966076)  # test Guild for now
+        guild: discord.Guild = self.bot.get_guild(1171565156619268208)  # test Guild for now
 
         try:
-            channel: discord.TextChannel = guild.get_channel(1172224969086877826)  # test channel for now
+            channel: discord.TextChannel = guild.get_channel(1172350582196031488)  # test channel for now
             await channel.send(f"{guild.default_role.mention}\nHere are the Top News Articles...")
             for news in get_news():
                 embed = discord.Embed(color=0xffd500)

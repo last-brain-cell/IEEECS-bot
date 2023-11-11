@@ -691,7 +691,7 @@ class Questions(commands.Cog, name="questions"):
                 name="Click here to go to the Question",
                 url=link
             )
-            await channel.send(f"<@&1171834553661399130>\n❓Here is the Daily Problem❓\nThe Grind Continues..🎯",
+            await channel.send(f"❓Here is the Daily Problem❓\nThe Grind Continues..🎯",
                                embeds=[embed])
         except Exception as e:
             print(e)

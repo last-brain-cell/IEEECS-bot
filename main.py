@@ -50,8 +50,8 @@ class CustomBot(commands.Bot):
     async def on_member_join(self, member: discord.Member):
         channel: discord.TextChannel = self.get_channel(1172930460091940884)
         await channel.send(
-            f"Hi {member.mention} Welcome to IEEE Computer Society MUJ Community server! Head over to <id:customize>"
-            f" to get roles and get started."
+            f"Hi {member.mention}! Welcome to IEEE Computer Society MUJ Community server! "
+            f"Head over to customize to get roles and get started."
         )
 
     async def on_message(self, message: discord.Message):

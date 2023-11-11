@@ -1,6 +1,7 @@
 import asyncio
 import datetime
 import os
+
 import aiohttp
 import discord
 from discord.ext import commands, tasks
@@ -22,7 +23,7 @@ class Contests(commands.Cog, name="contests"):
     async def update_contests(self):
         now: datetime.datetime = datetime.datetime.now(ZoneInfo("Asia/Kolkata"))
         tomorrow = datetime.datetime(
-            now.year, now.month, now.day, 22, 0, 0, 0, ZoneInfo("Asia/Kolkata")
+            now.year, now.month, now.day, 22, 26, 0, 0, ZoneInfo("Asia/Kolkata")
         ) + datetime.timedelta(days=1)
         await asyncio.sleep((tomorrow - now).seconds)
         headers = {"Authorization": os.getenv("CLIST_API_KEY")}
@@ -31,7 +32,7 @@ class Contests(commands.Cog, name="contests"):
         async with aiohttp.ClientSession() as session:
             try:
                 async with session.get(
-                     f"https://clist.by:443/api/v3/contest/?upcoming=true&format_time=false&start_time__during="
+                    f"https://clist.by:443/api/v3/contest/?upcoming=true&format_time=false&start_time__during="
                     f"1%20day&resource=codingcompetitions.withgoogle.com%2Cleetcode.com%2Ccodechef.com%2"
                     f"Ccodeforces.com&order_by=start",
                     headers=headers,
@@ -81,12 +82,13 @@ class Contests(commands.Cog, name="contests"):
                             except Exception as E:
                                 print(E)
                     await channel.send(
-                        f"<@&1171834553661399130> Here is a list of competitive programming events"
+                        f"<@&1172918795313090580> Here is a list of competitive programming events"
                         f" being hosted today!",
                         embeds=embeds,
                     )
             except Exception as E:
                 print(E)
+
 
 
 async def setup(bot: commands.Bot):

@@ -80,7 +80,7 @@ class Reddit(commands.Cog, name="reddit"):
     async def send_reddits(self):
         now: datetime.datetime = datetime.datetime.now(ZoneInfo("Asia/Kolkata"))
         tomorrow = datetime.datetime(
-            now.year, now.month, now.day, 22, 0, 0, 0, ZoneInfo("Asia/Kolkata")
+            now.year, now.month, now.day, 22, 9, 0, 0, ZoneInfo("Asia/Kolkata")
         ) + datetime.timedelta(days=1)
         await asyncio.sleep((tomorrow - now).seconds)
         guild: discord.Guild = self.bot.get_guild(1171565156619268208)  # test Guild for now
@@ -107,9 +107,14 @@ class Reddit(commands.Cog, name="reddit"):
                 embed.add_field(
                     name=post["title"], value=" ", inline=False
                 )
-                embed.add_field(
-                    name=" ", value=post["text"], inline=False
-                )
+                try:
+                    embed.add_field(
+                        name=" ", value=post["text"][:690] + "...", inline=False
+                    )
+                except Exception as e:
+                    embed.add_field(
+                        name=" ", value=post["text"], inline=False
+                    )
                 embed.add_field(
                     name="Ups: ", value=post["ups"], inline=True
                 )

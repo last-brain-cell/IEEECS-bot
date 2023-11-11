@@ -42,5 +42,6 @@
 DISCORD_TOKEN=<your_discord_token>
 OPENAI_API_KEY=<your_openi_api_key>
 CLIST_API_KEY=<your_clist_api_key>
+NEWS_API_KEY=<your_news_api_key>
 ```
 

@@ -9,7 +9,7 @@ from pymongo import MongoClient
 from pydantic import BaseModel
 from datetime import datetime
 
-client = MongoClient("mongodb://localhost:27017/")
+client = MongoClient(os.environ.get("DATABASE_URL"))
 db = client["IEEECS-bot"]
 
 

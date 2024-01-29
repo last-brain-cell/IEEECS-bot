@@ -48,7 +48,7 @@ class CustomBot(commands.Bot):
         # load anything that should be in memory prior to handling events.
 
     async def on_member_join(self, member: discord.Member):
-        channel: discord.TextChannel = self.get_channel(1172930460091940884)
+        channel: discord.TextChannel = self.get_channel(1172351910532108460)
         await channel.send(
             f"Hi {member.mention}! Welcome to IEEE Computer Society MUJ Community server! "
             f"Head over to customize to get roles and get started."
